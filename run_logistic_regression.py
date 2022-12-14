@@ -20,8 +20,9 @@ if __name__ == '__main__':
 
     # testing
     y_pred = classifier.predict(X_test)
+    y_test = y_test.astype(int)
 
-    # performance on test set
+    #performance on test set
     print('Accuracy ', accuracy(y_true=y_test, y_pred=y_pred))
     print('Recall score ', recall_score(y_true=y_test, y_pred=y_pred))
     print('Precision score ', precision_score(y_true=y_test, y_pred=y_pred))

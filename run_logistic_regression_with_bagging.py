@@ -5,23 +5,23 @@ main code that you will run
 from linear_model import LogisticRegression
 from ensemble import BaggingClassifier
 from data_handler import load_dataset, split_dataset
-from metrics import precision_score, recall_score, f1_score
+from metrics import accuracy, precision_score, recall_score, f1_score
 
 if __name__ == '__main__':
     # data load
-    X, y = load_dataset()
+    X, y = load_dataset('data_banknote_authentication.csv')
 
     # split train and test
     X_train, y_train, X_test, y_test = split_dataset(X, y)
 
     # training
-    params = dict()
-    base_estimator = LogisticRegression(params)
+    base_estimator = LogisticRegression()
     classifier = BaggingClassifier(base_estimator=base_estimator, n_estimator=9)
     classifier.fit(X_train, y_train)
 
     # testing
     y_pred = classifier.predict(X_test)
+    y_test = y_test.astype(int)
 
     # performance on test set
     print('Accuracy ', accuracy(y_true=y_test, y_pred=y_pred))

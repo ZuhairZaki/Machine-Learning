@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+from ensemble import BaggingClassifier
+from linear_model import LogisticRegression
 
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
@@ -16,12 +18,7 @@ def load_dataset(path_to_csv):
     y = data.iloc[:, -1].values
     maxs = np.max(x, axis=0)
     mins = np.min(x, axis=0)
-    # x = (x - mins) / (maxs - mins)
+    x = (x - mins) / (maxs - mins)
     x = np.hstack((np.ones((x.shape[0], 1)), x))
-
-    w = np.zeros(x.shape[1])
-    h = sigmoid(x.dot(w))
-    print(y)
-    print(np.round(h).astype(int))
-
+    
 load_dataset('data_banknote_authentication.csv')
