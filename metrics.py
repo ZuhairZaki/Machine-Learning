@@ -11,8 +11,12 @@ def accuracy(y_true, y_pred):
     :return:
     """
     # todo: implement
-    return None
-    
+    correct = 0
+    for i in range(len(y_true)):
+        if y_true[i] == y_pred[i]:
+            correct += 1
+    return correct / float(len(y_true))*100.0
+
 
 def precision_score(y_true, y_pred):
     """
@@ -22,7 +26,14 @@ def precision_score(y_true, y_pred):
     :return:
     """
     # todo: implement
-    return None
+    tp = 0
+    fp = 0
+    for i in range(len(y_true)):
+        if y_true[i] == 1 and y_pred[i] == 1:
+            tp += 1
+        if y_true[i] == 0 and y_pred[i] == 1:
+            fp += 1
+    return tp / (tp + fp)
 
 
 def recall_score(y_true, y_pred):
@@ -33,7 +44,14 @@ def recall_score(y_true, y_pred):
     :return:
     """
     # todo: implement
-    return None
+    tp = 0
+    fn = 0
+    for i in range(len(y_true)):
+        if y_true[i] == 1 and y_pred[i] == 1:
+            tp += 1
+        if y_true[i] == 1 and y_pred[i] == 0:
+            fn += 1
+    return tp / (tp + fn)
 
 
 def f1_score(y_true, y_pred):
@@ -44,4 +62,6 @@ def f1_score(y_true, y_pred):
     :return:
     """
     # todo: implement
-    return None
+    p = precision_score(y_true, y_pred)
+    r = recall_score(y_true, y_pred)
+    return 2 * p * r / (p + r)

@@ -4,7 +4,7 @@ main code that you will run
 
 from linear_model import LogisticRegression
 from data_handler import load_dataset, split_dataset
-from metrics import precision_score, recall_score, f1_score
+from metrics import accuracy, precision_score, recall_score, f1_score
 
 
 if __name__ == '__main__':
@@ -15,8 +15,7 @@ if __name__ == '__main__':
     X_train, y_train, X_test, y_test = split_dataset(X, y)
 
     # training
-    params = dict()
-    classifier = LogisticRegression(params)
+    classifier = LogisticRegression()
     classifier.fit(X_train, y_train)
 
     # testing
